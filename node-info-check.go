@@ -3,6 +3,7 @@ package main
 import (
 	"ericshu.io/aelf-chain-test/api"
 	"fmt"
+	"log"
 )
 
 var chain api.Chain
@@ -12,9 +13,15 @@ func init() {
 }
 
 func main(){
+	chainInfo := chain.GetChainStatus()
+	fmt.Println("ChainId:", chainInfo.ChainId)
+
 	height := chain.GetBlockHeight()
 	fmt.Println("Block height: ", height)
 
-	chainInfo := chain.GetChainStatus()
-	fmt.Println("ChainId:", chainInfo.ChainId)
+	var i int64
+	for i=1; i<=height; i++ {
+		block := chain.GetBlockByHeight(i, true)
+		log.Printf(fmt.Sprintf("Height: %d, Block info: %s", i, block))
+	}
 }
