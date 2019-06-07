@@ -13,8 +13,8 @@ func init() {
 
 func main(){
 	height := chain.GetBlockHeight()
-	fmt.Println("Blocjk height: ", height)
+	fmt.Println("Block height: ", height)
 
-	chainInfo := chain.GetChainInformation()
-	fmt.Println("Chain info:", chainInfo)
+	chainInfo := chain.GetChainStatus()
+	fmt.Println("ChainId:", chainInfo.ChainId)
 }

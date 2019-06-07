@@ -2,7 +2,8 @@ package utils
 
 import (
 	"fmt"
-	 "github.com/kirinlabs/HttpRequest"
+	"github.com/kirinlabs/HttpRequest"
+	"strings"
 )
 
 type HttpClient struct {
@@ -45,7 +46,7 @@ func (request HttpClient) AddHeaderItem(key, value string) {
 
 func (request HttpClient) Get(subUrl string, params map[string]interface{}) (response string) {
 	response = ""
-	url := fmt.Sprintf("%s/%s", request.BaseUrl, subUrl)
+	url := fmt.Sprintf("%s%s", request.BaseUrl, subUrl)
 	resp, err := request.Request.Get(url, params)
 	if err != nil {
 		return
@@ -85,6 +86,26 @@ func (request HttpClient) Put(subUrl string, params map[string]interface{}) (res
 
 func (request HttpClient) Delete(subUrl string, params map[string]interface{}) (response string) {
 	response = ""
+
+	return
+}
+
+func GetQueryUrl(url string, params map[string]interface{}) (requestUrl string){
+	if params != nil {
+		url +="?"
+		var urlItems []string
+		for key, value := range params{
+			switch value.(type) {
+			case string:
+				urlItems = append(urlItems, fmt.Sprintf("%s=%s", key, value))
+			default:
+				urlItems = append(urlItems, fmt.Sprintf("%s=%s", key, value.(string)))
+			}
+		}
+		url += strings.Join(urlItems, "&")
+	}else{
+		requestUrl = url
+	}
 
 	return
 }
