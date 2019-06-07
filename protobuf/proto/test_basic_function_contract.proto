@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+import "aelf/options.proto";
+import "aelf/core.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "AElf.Contracts.TestContract.BasicFunction";
+
+service BasicFunctionContract {
+    option (aelf.csharp_state) = "AElf.Contracts.TestContract.BasicFunction.BasicFunctionContractState";
+    //Actions
+    rpc InitialBasicFunctionContract(InitialBasicContractInput) returns (google.protobuf.Empty){
+    }
+    rpc UpdateBetLimit(BetLimitInput) returns (google.protobuf.Empty){
+    }
+    rpc UserPlayBet(BetInput) returns (google.protobuf.Empty) {
+    }
+
+    //View
+    rpc QueryWinMoney(google.protobuf.Empty) returns (MoneyOutput) {
+    }
+    rpc QueryRewardMoney(google.protobuf.Empty) returns (MoneyOutput) {
+    }
+    rpc QueryUserWinMoney(aelf.Address) returns (MoneyOutput) {
+    }
+    rpc QueryUserLoseMoney(aelf.Address) returns (MoneyOutput) {
+    }
+}
+
+//Input
+message InitialBasicContractInput {
+    string ContractName = 1;
+    int64 MinValue = 2;
+    int64 MaxValue = 3;
+    int64 MortgageValue = 4;
+    aelf.Address Manager = 5;
+}
+
+message BetLimitInput {
+    int64 MinValue = 2;
+    int64 MaxValue = 3;
+}
+
+message BetInput {
+    int64 Int64Value = 1;
+}
+//Output
+
+message MoneyOutput {
+    int64 Int64Value = 1;
+}
+
+message BetStatus {
+    bool BoolValue = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package zero;
+
+import "aelf/options.proto";
+import "acs0.proto";
+
+option csharp_namespace = "AElf.Contracts.Genesis";
+
+service BasicContractZero {
+    option (aelf.csharp_state) = "AElf.Contracts.Genesis.BasicContractZeroState";
+    option (aelf.base) = "acs0.proto";
+}
