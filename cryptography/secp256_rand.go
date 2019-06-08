@@ -6,7 +6,6 @@ import (
 	"hash"
 	"io"
 	"log"
-	//mrand "math/rand"
 	"os"
 	"strconv"
 	"strings"
