@@ -31,7 +31,7 @@ func ConvertTransactionRawTxString(transaction aelf.Transaction) (rawString stri
 	return
 }
 
-func AddBlockReference(transaction aelf.Transaction){
+func AddBlockReference(transaction aelf.Transaction) aelf.Transaction {
 	height := cacheHeight
 	if height ==0 || time.Now().Sub(refBlockTime).Seconds() > 30 {
 		cacheHeight = Chain.GetBlockHeight()
@@ -40,9 +40,11 @@ func AddBlockReference(transaction aelf.Transaction){
 	}
 	prefix, err := utils.FromHexString(cacheHash)
 	if err != nil {
-		return
+		return transaction
 	}
 
 	transaction.RefBlockNumber = cacheHeight
 	transaction.RefBlockPrefix = prefix[0:3]
+
+	return transaction
 }

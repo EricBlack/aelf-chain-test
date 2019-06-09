@@ -7,3 +7,9 @@ func FromHexString(hexString string) (bytes []byte, err error) {
 
 	return
 }
+
+func FromBytesToHex(bytes []byte) (rawString string){
+	rawString = hex.EncodeToString(bytes)
+
+	return
+}

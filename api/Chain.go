@@ -125,7 +125,9 @@ func (chain Chain) GetBlockState(blockHash string) (result dto.BlockStateDto) {
 	return
 }
 
-func (chain Chain) Call(from, to string, inputMessage interface{}) (result interface{}) {
+func (chain Chain) Call(inputMessage dto.CallInput) (result []byte) {
+	result = []byte{}
+
 	return
 }
 

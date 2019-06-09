@@ -9,6 +9,12 @@ import (
 type TransactionManager struct {
 }
 
+func GetTransactionBytes(transaction aelf.Transaction) (bytes []byte) {
+	bytes, _ = proto.Marshal(&transaction)
+
+	return
+}
+
 func GetHash(signature []byte) (hash aelf.Hash) {
 	hash = aelf.Hash{
 		Value: cryptography.CalculateHash(signature),

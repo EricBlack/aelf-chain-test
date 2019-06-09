@@ -14,7 +14,7 @@ func init() {
 
 func main(){
 	chainInfo := chain.GetChainStatus()
-	fmt.Println("ChainId:", chainInfo.ChainId)
+	fmt.Println("ChainId: %s, Zero Contract: %s", chainInfo.ChainId, chainInfo.GenesisContractAddress)
 
 	height := chain.GetBlockHeight()
 	fmt.Println("Block height: ", height)
